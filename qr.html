@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Code Generator</title>
+  <style>
+    /* Old-school vibe styling */
+    body {
+      background-color: #f0f0f0;
+      font-family: 'Courier New', Courier, monospace;
+      color: #333;
+      text-align: center;
+      margin-top: 50px;
+      padding-bottom: 60px; /* space for footer */
+    }
+    input, button, select {
+      font-size: 1em;
+      padding: 10px;
+      margin: 5px;
+    }
+    #qrcode {
+      margin-top: 20px;
+    }
+    /* Center the generated QR code image */
+    #qrcode img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Footer styling */
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #e0e0e0;
+      padding: 10px 0;
+      font-size: 0.8em;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>QR Code Generator</h1>
+  <input id="link" type="text" placeholder="Enter your link here" size="40"/>
+  <br/>
+  <button id="generate">Generate QR Code</button>
+  <br/>
+  <!-- Dropdown to choose a resolution for download -->
+  <select id="resolution">
+    <option value="">Select download resolution</option>
+    <option value="256">256 x 256</option>
+    <option value="512">512 x 512</option>
+    <option value="1024">1024 x 1024</option>
+  </select>
+  <button id="download">Download QR Code</button>
+  <div id="qrcode"></div>
+  
+  <!-- Include the local qrcode.min.js file -->
+  <script src="qrcode.js"></script> 
+  <script>
+    // Generate the displayed QR code (128x128)
+    document.getElementById('generate').addEventListener('click', function() {
+      var link = document.getElementById('link').value.trim();
+      document.getElementById('qrcode').innerHTML = "";
+      if(link) {
+        new QRCode(document.getElementById("qrcode"), {
+          text: link,
+          width: 128,
+          height: 128,
+          colorDark : "#000000",
+          colorLight : "#ffffff",
+          correctLevel : QRCode.CorrectLevel.H
+        });
+      } else {
+        alert("Please enter a valid link!");
+      }
+    });
+
+    // Download button: generate and download QR code in chosen resolution
+    document.getElementById('download').addEventListener('click', function() {
+      var link = document.getElementById('link').value.trim();
+      var res = document.getElementById('resolution').value;
+      if(!link) {
+        alert("Please enter a valid link!");
+        return;
+      }
+      if(!res) {
+        alert("Please select a download resolution from the dropdown!");
+        return;
+      }
+      // Create a temporary hidden container for generating the high-res QR code
+      var tempDiv = document.createElement("div");
+      tempDiv.style.visibility = "hidden";
+      document.body.appendChild(tempDiv);
+      // Generate the QR code at the chosen resolution
+      new QRCode(tempDiv, {
+        text: link,
+        width: parseInt(res),
+        height: parseInt(res),
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
+      // Give the library a moment to render the QR code
+      setTimeout(function() {
+        var img = tempDiv.getElementsByTagName("img")[0];
+        if(!img) {
+          alert("Failed to generate QR code image!");
+          document.body.removeChild(tempDiv);
+          return;
+        }
+        // Create a temporary link to trigger the download
+        var a = document.createElement("a");
+        a.href = img.src;
+        a.download = "qrcode_" + res + "x" + res + ".png";
+        document.body.appendChild(a);
+        a.click();
+        // Cleanup
+        document.body.removeChild(a);
+        document.body.removeChild(tempDiv);
+      }, 100);
+    });
+  </script>
+
+  <!-- Footer with credits and donation address -->
+  <footer>
+    <p>Credits: Francesco Di Pietro | BTC: bc1q77mr375md3urdktstnsf525um46f5kkyed6j74</p>
+  </footer>
+</body>
+</html>
