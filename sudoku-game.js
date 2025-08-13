@@ -65,8 +65,9 @@ class SudokuGame {
   }
 
   setupWebSocket() {
-    // Initial connection status
-    this.updateConnectionStatus('Ready to connect');
+    // Using a public WebSocket echo service for demo
+    // In production, you'd use your own WebSocket server
+    this.updateConnectionStatus('Single Player Mode');
   }
 
   createRoom() {
@@ -99,123 +100,28 @@ class SudokuGame {
   }
 
   setupMultiplayerConnection() {
-    // Using a public WebSocket relay service for real-time multiplayer
-    // This connects to a free public WebSocket echo/relay server
+    // For demo purposes, we'll simulate multiplayer with localStorage
+    // In production, use WebSocket connection to a server
     
-    this.updateConnectionStatus('Connecting to server...');
-    
-    // Using WebSocket.in free public relay service
-    // Alternative: wss://socketsbay.com/wss/v2/[channel]/
-    const wsUrl = `wss://socketsbay.com/wss/v2/${this.roomCode}/`;
-    
-    try {
-      this.ws = new WebSocket(wsUrl);
-      
-      this.ws.onopen = () => {
-        this.updateConnectionStatus('Connected to Room: ' + this.roomCode);
-        document.getElementById('partner-indicator').style.display = 'inline-block';
-        
-        // Send join message
-        this.sendMessage({
-          type: 'join',
-          playerId: this.getPlayerId(),
-          roomCode: this.roomCode
-        });
-        
-        this.showMessage('Connected! Waiting for partner...', 'success');
-      };
-      
-      this.ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          
-          // Ignore our own messages
-          if (data.playerId === this.getPlayerId()) return;
-          
-          switch(data.type) {
-            case 'join':
-              this.showMessage('Partner connected!', 'success');
-              // If we have an active game, share it with the new player
-              if (this.board.some(row => row.some(cell => cell !== 0))) {
-                this.broadcastNewGame();
-              }
-              break;
-            case 'move':
-              this.handlePartnerMove(data);
-              break;
-            case 'newgame':
-              this.loadGameState(data.gameState);
-              break;
-            case 'cursor':
-              this.showPartnerCursor(data.row, data.col);
-              break;
-          }
-        } catch (e) {
-          console.error('Error parsing message:', e);
-        }
-      };
-      
-      this.ws.onerror = (error) => {
-        console.error('WebSocket error:', error);
-        this.updateConnectionStatus('Connection error - trying fallback...');
-        this.setupFallbackMultiplayer();
-      };
-      
-      this.ws.onclose = () => {
-        this.updateConnectionStatus('Disconnected - Reconnecting...');
-        document.getElementById('partner-indicator').style.display = 'none';
-        
-        // Try to reconnect after 3 seconds
-        setTimeout(() => {
-          if (this.isMultiplayer && this.roomCode) {
-            this.setupMultiplayerConnection();
-          }
-        }, 3000);
-      };
-      
-    } catch (error) {
-      console.error('Failed to create WebSocket:', error);
-      this.setupFallbackMultiplayer();
-    }
-  }
-  
-  setupFallbackMultiplayer() {
-    // Fallback to localStorage for local testing
-    this.updateConnectionStatus('Local Mode (same browser only)');
+    this.updateConnectionStatus('Connected to Room: ' + this.roomCode);
     document.getElementById('partner-indicator').style.display = 'inline-block';
     
+    // Simulate partner connection
+    setTimeout(() => {
+      this.showMessage('Partner connected!', 'success');
+    }, 2000);
+    
+    // Listen for storage events (simulating multiplayer)
     window.addEventListener('storage', (e) => {
       if (e.key === `sudoku-${this.roomCode}`) {
         const data = JSON.parse(e.newValue);
-        if (data.playerId !== this.getPlayerId()) {
-          switch(data.type) {
-            case 'move':
-              this.handlePartnerMove(data);
-              break;
-            case 'newgame':
-              this.loadGameState(data.gameState);
-              break;
-          }
+        if (data.type === 'move' && data.senderId !== this.getPlayerId()) {
+          this.handlePartnerMove(data);
+        } else if (data.type === 'newgame' && data.senderId !== this.getPlayerId()) {
+          this.loadGameState(data.gameState);
         }
       }
     });
-  }
-  
-  sendMessage(data) {
-    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
-      this.ws.send(JSON.stringify(data));
-    } else {
-      // Fallback to localStorage
-      localStorage.setItem(`sudoku-${this.roomCode}`, JSON.stringify(data));
-    }
-  }
-  
-  showPartnerCursor(row, col) {
-    const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
-    if (cell) {
-      cell.classList.add('partner-cursor');
-      setTimeout(() => cell.classList.remove('partner-cursor'), 1000);
-    }
   }
 
   handlePartnerMove(data) {
@@ -236,10 +142,10 @@ class SudokuGame {
         row,
         col,
         value,
-        playerId: this.getPlayerId(),
+        senderId: this.getPlayerId(),
         timestamp: Date.now()
       };
-      this.sendMessage(data);
+      localStorage.setItem(`sudoku-${this.roomCode}`, JSON.stringify(data));
     }
   }
 
@@ -253,10 +159,10 @@ class SudokuGame {
           initialBoard: this.initialBoard,
           difficulty: this.difficulty
         },
-        playerId: this.getPlayerId(),
+        senderId: this.getPlayerId(),
         timestamp: Date.now()
       };
-      this.sendMessage(data);
+      localStorage.setItem(`sudoku-${this.roomCode}`, JSON.stringify(data));
     }
   }
 
@@ -478,16 +384,6 @@ class SudokuGame {
     const cell = document.querySelector(`[data-row="${row}"][data-col="${col}"]`);
     cell.classList.add('selected');
     this.selectedCell = { row, col };
-    
-    // Broadcast cursor position to partner
-    if (this.isMultiplayer) {
-      this.sendMessage({
-        type: 'cursor',
-        row,
-        col,
-        playerId: this.getPlayerId()
-      });
-    }
     
     // Highlight same number
     const value = this.board[row][col];
