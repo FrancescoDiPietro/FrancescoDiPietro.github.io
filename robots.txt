@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /.github/
+
+Sitemap: https://francescodipietro.github.io/sitemap.xml

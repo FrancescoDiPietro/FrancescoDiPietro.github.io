@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Francesco Di Pietro | Computer Engineer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Technical projects by Francesco Di Pietro, Computer Engineer. Network simulators, IoT prototypes, system monitoring, and more.">
+    <meta name="keywords" content="computer engineer, projects, network simulator, IoT, Arduino, Python, system monitoring">
+    
+    <!-- Google Fonts - JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (Local) -->
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+
+    <!-- Initialize theme early to prevent flash -->
+    <script>
+        // Apply theme immediately to prevent flash
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-black text-black dark:text-green-400 min-h-screen">
+    <!-- Navigation -->
+    <nav class="p-4 border-b border-gray-800 dark:border-green-400">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-gray-800 dark:text-green-400">></span>
+                <a href="index.html" class="font-bold hover:text-black dark:hover:text-white transition-colors">francesco.dipietro@portfolio</a>
+                <span class="text-gray-600 dark:text-gray-500">~$</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">home</a>
+                <a href="about.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+                <a href="blog.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">blog</a>
+                <a href="projects.html" class="text-black dark:text-white border-b-2 border-gray-800 dark:border-green-400">projects</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden" aria-label="Toggle navigation menu">
+                <span class="text-gray-800 dark:text-green-400">☰</span>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="index.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">home</a>
+            <a href="about.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+            <a href="blog.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">blog</a>
+            <a href="projects.html" class="block text-black dark:text-white">projects</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4">
+        <!-- Header -->
+        <section class="my-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                <span class="text-gray-800 dark:text-green-400">$ ls projects/</span>
+                <span class="terminal-cursor"></span>
+            </h1>
+            <p class="text-xl text-gray-700 dark:text-gray-300">Building solutions through code and hardware</p>
+            <p class="text-gray-600 dark:text-gray-400 mt-2">
+                A collection of technical projects spanning network simulation, IoT systems, 
+                organizational tools, and hardware prototyping.
+            </p>
+        </section>
+
+        <!-- Project Stats -->
+        <section class="mb-12">
+            <div class="border border-gray-800 dark:border-green-400 p-4 text-sm">
+                <div class="flex flex-wrap gap-6">
+                    <div>
+                        <span class="text-gray-800 dark:text-green-400">$ find projects/ -name "*.py" -o -name "*.cpp" -o -name "*.java" | wc -l</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600 dark:text-gray-400">Total projects:</span> <span class="text-black dark:text-white">5</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600 dark:text-gray-400">Lines of code:</span> <span class="text-black dark:text-white">~15,000</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600 dark:text-gray-400">Technologies:</span> <span class="text-black dark:text-white">Python, C++, Java, Arduino, MQTT</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter/Categories -->
+        <section class="mb-8">
+            <div class="flex flex-wrap gap-4 text-sm">
+                <button class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-3 py-1 border border-gray-800 dark:border-green-400" data-filter="all">
+                    all
+                </button>
+                <button class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-green-400 px-3 py-1 border border-gray-600 dark:border-gray-400 hover:border-gray-800 dark:hover:border-green-400 transition-colors" data-filter="university">
+                    university
+                </button>
+                <button class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-green-400 px-3 py-1 border border-gray-600 dark:border-gray-400 hover:border-gray-800 dark:hover:border-green-400 transition-colors" data-filter="professional">
+                    professional
+                </button>
+                <button class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-green-400 px-3 py-1 border border-gray-600 dark:border-gray-400 hover:border-gray-800 dark:hover:border-green-400 transition-colors" data-filter="hardware">
+                    hardware
+                </button>
+                <button class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-green-400 px-3 py-1 border border-gray-600 dark:border-gray-400 hover:border-gray-800 dark:hover:border-green-400 transition-colors" data-filter="personal">
+                    personal
+                </button>
+            </div>
+        </section>
+
+        <!-- Projects Grid -->
+        <section class="grid md:grid-cols-2 gap-8">
+            <!-- Project 1: Network Simulator -->
+            <article class="border border-gray-800 dark:border-green-400 p-6 hover:bg-gray-100 dark:hover:bg-green-400 dark:hover:bg-opacity-5 transition-colors project-card" data-category="university">
+                <header class="mb-4">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800 dark:text-green-400">
+                        Open and Virtualised Network Simulator
+                    </h3>
+                    <div class="flex flex-wrap gap-2 text-xs mb-3">
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Python</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Object-Oriented</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Network Simulation</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Analytics</span>
+                    </div>
+                </header>
+                
+                <div class="mb-4 text-gray-600 dark:text-gray-300 text-sm">
+                    <p class="mb-3">
+                        Designed an object-oriented optical network simulator with comprehensive components 
+                        including Node, Line, Network, Lightpath, and Connection classes. Features channel 
+                        allocation algorithms and route-space management for realistic network modeling.
+                    </p>
+                    
+                    <div class="border-l-2 border-gray-800 dark:border-green-400 pl-3 mb-3 text-gray-600 dark:text-gray-400">
+                        <strong>Key Features:</strong><br>
+                        • SNR/latency analytics and bit-rate calculations<br>
+                        • Support for fixed, flex, and Shannon modes<br>
+                        • Route optimization and resource allocation<br>
+                        • Performance metrics and network analysis
+                    </div>
+                </div>
+                
+                <footer class="flex justify-between items-center text-xs">
+                    <span class="text-gray-600 dark:text-gray-500">University Project • 2023</span>
+                    <div class="flex gap-2">
+                        <span class="text-gray-800 dark:text-green-400">Python</span>
+                        <span class="text-gray-600 dark:text-gray-500">•</span>
+                        <span class="text-gray-800 dark:text-green-400">OOP</span>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- Project 2: Smart Home IoT -->
+            <article class="border border-gray-800 dark:border-green-400 p-6 hover:bg-gray-100 dark:hover:bg-green-400 dark:hover:bg-opacity-5 transition-colors project-card" data-category="university hardware">
+                <header class="mb-4">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800 dark:text-green-400">
+                        Smart-Home IoT Prototype
+                    </h3>
+                    <div class="flex flex-wrap gap-2 text-xs mb-3">
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Arduino</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">C/C++</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">MQTT</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Python</span>
+                    </div>
+                </header>
+                
+                <div class="mb-4 text-gray-600 dark:text-gray-300 text-sm">
+                    <p class="mb-3">
+                        Full-stack IoT system combining Arduino sensors with MQTT messaging and Python 
+                        analytics. Features Eclipse Mosquitto broker, paho-mqtt client integration, 
+                        and comprehensive data logging with dashboard visualization.
+                    </p>
+                    
+                    <div class="border-l-2 border-gray-800 dark:border-green-400 pl-3 mb-3 text-gray-600 dark:text-gray-400">
+                        <strong>Architecture:</strong><br>
+                        • Arduino sensors → MQTT broker → Python client<br>
+                        • File and database logging systems<br>
+                        • QoS handling and retry mechanisms<br>
+                        • Basic authentication and message schemas
+                    </div>
+                </div>
+                
+                <footer class="flex justify-between items-center text-xs">
+                    <span class="text-gray-600 dark:text-gray-500">University Project • 2023</span>
+                    <div class="flex gap-2">
+                        <span class="text-gray-800 dark:text-green-400">IoT</span>
+                        <span class="text-gray-600 dark:text-gray-500">•</span>
+                        <span class="text-gray-800 dark:text-green-400">Embedded</span>
+                    </div>
+                </footer>
+            </article>
+
+
+            <!-- Project 3: BEST Event Management -->
+            <article class="border border-green-400 p-6 hover:bg-green-400 hover:bg-opacity-5 transition-colors project-card" data-category="professional">
+                <header class="mb-4">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800 dark:text-green-400">
+                        BEST Event Management System
+                    </h3>
+                    <div class="flex flex-wrap gap-2 text-xs mb-3">
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Android</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Java</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">NFC</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Database</span>
+                    </div>
+                </header>
+                
+                <div class="mb-4 text-gray-600 dark:text-gray-300 text-sm">
+                    <p class="mb-3">
+                        Comprehensive event management solution built during my tenure as IT-Coordinator 
+                        at BEST. Features Android app with NFC integration for fast check-ins, database 
+                        administration tools, and website maintenance systems.
+                    </p>
+                    
+                    <div class="border-l-2 border-gray-800 dark:border-green-400 pl-3 mb-3 text-gray-600 dark:text-gray-400">
+                        <strong>Responsibilities:</strong><br>
+                        • Android app development (Java, NFC)<br>
+                        • Database schema design and maintenance<br>
+                        • Event data quality and backup systems<br>
+                        • Website updates and uptime monitoring
+                    </div>
+                </div>
+                
+                <footer class="flex justify-between items-center text-xs">
+                    <span class="text-gray-600 dark:text-gray-500">Professional • 2022-2023</span>
+                    <div class="flex gap-2">
+                        <span class="text-gray-800 dark:text-green-400">Mobile</span>
+                        <span class="text-gray-600 dark:text-gray-500">•</span>
+                        <span class="text-gray-800 dark:text-green-400">NFC</span>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- Project 4: Custom Quadcopter -->
+            <article class="border border-green-400 p-6 hover:bg-green-400 hover:bg-opacity-5 transition-colors project-card" data-category="hardware personal">
+                <header class="mb-4">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800 dark:text-green-400">
+                        Custom Quadcopter Build
+                    </h3>
+                    <div class="flex flex-wrap gap-2 text-xs mb-3">
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Embedded</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Soldering</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Flight Control</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Hardware</span>
+                    </div>
+                </header>
+                
+                <div class="mb-4 text-gray-600 dark:text-gray-300 text-sm">
+                    <p class="mb-3">
+                        Hands-on hardware project involving complete quadcopter assembly from components. 
+                        Includes motor and ESC soldering, power distribution design, flight controller 
+                        programming, and PID tuning for stable flight characteristics.
+                    </p>
+                    
+                    <div class="border-l-2 border-gray-800 dark:border-green-400 pl-3 mb-3 text-gray-600 dark:text-gray-400">
+                        <strong>Skills Applied:</strong><br>
+                        • PCB soldering and wire management<br>
+                        • Power distribution and voltage regulation<br>
+                        • Flight controller configuration<br>
+                        • PID tuning and stabilization algorithms
+                    </div>
+                </div>
+                
+                <footer class="flex justify-between items-center text-xs">
+                    <span class="text-gray-600 dark:text-gray-500">Personal Project • Ongoing</span>
+                    <div class="flex gap-2">
+                        <span class="text-gray-800 dark:text-green-400">Hardware</span>
+                        <span class="text-gray-600 dark:text-gray-500">•</span>
+                        <span class="text-gray-800 dark:text-green-400">DIY</span>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- Project 5: Server Automation -->
+            <article class="border border-green-400 p-6 hover:bg-green-400 hover:bg-opacity-5 transition-colors project-card" data-category="personal">
+                <header class="mb-4">
+                    <h3 class="text-2xl font-bold mb-2 text-gray-800 dark:text-green-400">
+                        Self-Hosted Server & Automation
+                    </h3>
+                    <div class="flex flex-wrap gap-2 text-xs mb-3">
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Linux</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Python</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Docker</span>
+                        <span class="bg-gray-200 dark:bg-green-400 dark:bg-opacity-20 text-gray-800 dark:text-green-400 px-2 py-1">Automation</span>
+                    </div>
+                </header>
+                
+                <div class="mb-4 text-gray-600 dark:text-gray-300 text-sm">
+                    <p class="mb-3">
+                        Home lab infrastructure with self-hosted services and automation scripts. 
+                        Features Python scripts for server health monitoring with push notifications, 
+                        Docker containerization, and automated backup systems.
+                    </p>
+                    
+                    <div class="border-l-2 border-gray-800 dark:border-green-400 pl-3 mb-3 text-gray-600 dark:text-gray-400">
+                        <strong>Features:</strong><br>
+                        • Automated health monitoring and alerts<br>
+                        • Docker-based service deployment<br>
+                        • Backup automation and verification<br>
+                        • Resource usage optimization
+                        • Git server (Forgejo)
+                    </div>
+                </div>
+                
+                <footer class="flex justify-between items-center text-xs">
+                    <span class="text-gray-600 dark:text-gray-500">Personal Infrastructure • Ongoing</span>
+                    <div class="flex gap-2">
+                        <span class="text-gray-800 dark:text-green-400">DevOps</span>
+                        <span class="text-gray-600 dark:text-gray-500">•</span>
+                        <span class="text-gray-800 dark:text-green-400">Self-hosted</span>
+                    </div>
+                </footer>
+            </article>
+        </section>
+
+        <!-- Additional Projects Note -->
+        <section class="mt-16 mb-8 text-center">
+            <div class="border border-gray-800 dark:border-green-400 p-6">
+                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-green-400">$ echo "More Projects Coming Soon"</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    I'm constantly working on new projects and experimenting with emerging technologies. 
+                    Current areas of exploration include blockchain development, advanced network protocols, 
+                    and machine learning applications in embedded systems.
+                </p>
+                <div class="flex justify-center gap-4 text-sm">
+                    <a href="blog.html" class="text-gray-800 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">
+                        → Read about my development process
+                    </a>
+                    <span class="text-gray-600 dark:text-gray-500">|</span>
+                    <a href="about.html" class="text-gray-800 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">
+                        → Get in touch for collaboration
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ASCII Art Divider -->
+        <div class="text-center text-gray-600 dark:text-gray-600 text-sm my-12">
+            <pre>
+    ╔══════════════════════════════════════════════════╗
+    ║  "The best projects teach you something new      ║
+    ║   and solve problems you actually care about"    ║
+    ║                                                  ║
+    ║  $ git log --oneline                             ║
+    ║  $ make it work, make it right, make it fast     ║
+    ╚══════════════════════════════════════════════════╝
+            </pre>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 dark:border-green-400 mt-16 p-4">
+        <div class="max-w-4xl mx-auto text-center text-gray-500 text-sm">
+            <p>© 2024 Francesco Di Pietro | Built with HTML + Tailwind | 
+                <a href="#" id="theme-toggle" class="hover:text-gray-800 dark:hover:text-green-400 transition-colors" aria-label="Toggle dark/light theme" role="button">Toggle Theme</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Shared JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

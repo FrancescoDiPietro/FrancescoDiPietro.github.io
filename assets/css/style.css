@@ -1,0 +1,39 @@
+:root {
+    --terminal-bg: #000000;
+    --terminal-fg: #00ff00;
+    --terminal-accent: #ffffff;
+    --terminal-muted: #808080;
+}
+
+[data-theme="light"] {
+    --terminal-bg: #ffffff;
+    --terminal-fg: #000000;
+    --terminal-accent: #333333;
+    --terminal-muted: #666666;
+}
+
+* {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal-cursor::after {
+    content: '█';
+    animation: blink 1s infinite;
+    color: var(--terminal-fg);
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.typing-animation {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end);
+}

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[BLOG POST TITLE] | Francesco Di Pietro | Computer Engineer</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="[BLOG POST DESCRIPTION - 160 characters max]">
+    <meta name="keywords" content="[KEYWORDS, COMMA, SEPARATED]">
+
+    <!-- Google Fonts - JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (Local) -->
+    <link rel="stylesheet" href="../assets/css/tailwind.css">
+
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+    <!-- Initialize theme early to prevent flash -->
+    <script>
+        // Apply theme immediately to prevent flash
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <!-- Blog-specific Custom CSS -->
+    <style>
+        /* Blog-specific styles */
+        .blog-content {
+            line-height: 1.8;
+        }
+
+        .blog-content h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1rem;
+        }
+
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content blockquote {
+            border-left: 4px solid var(--terminal-fg);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        .blog-content code:not([class*="language-"]) {
+            background-color: rgba(0, 255, 0, 0.1);
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+            font-size: 0.875em;
+        }
+
+        .blog-content pre {
+            margin: 1.5rem 0;
+            border: 1px solid var(--terminal-fg);
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-black text-black dark:text-green-400 min-h-screen">
+    <!-- Navigation -->
+    <nav class="p-4 border-b border-gray-800 dark:border-green-400">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-gray-800 dark:text-green-400">></span>
+                <a href="../index.html" class="font-bold hover:text-black dark:hover:text-white transition-colors">francesco.dipietro@portfolio</a>
+                <span class="text-gray-600 dark:text-gray-500">~$</span>
+            </div>
+
+            <div class="hidden md:flex space-x-6">
+                <a href="../index.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">home</a>
+                <a href="../about.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+                <a href="../blog.html" class="text-black dark:text-white border-b-2 border-gray-800 dark:border-green-400">blog</a>
+                <a href="../projects.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">projects</a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden" aria-label="Toggle navigation menu">
+                <span class="text-gray-800 dark:text-green-400">☰</span>
+            </button>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="../index.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">home</a>
+            <a href="../about.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+            <a href="../blog.html" class="block text-black dark:text-white">blog</a>
+            <a href="../projects.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">projects</a>
+        </div>
+    </nav>
+
+    <!-- Back to Blog -->
+    <div class="max-w-4xl mx-auto p-4">
+        <nav class="mb-8">
+            <a href="../blog.html" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-green-400 transition-colors">
+                <span class="text-gray-800 dark:text-green-400">←</span> back to blog
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4">
+        <!-- Article Header -->
+        <article>
+            <header class="mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-800 dark:text-green-400">
+                    [BLOG POST TITLE]
+                </h1>
+
+                <div class="flex flex-wrap items-center gap-6 text-sm text-gray-600 dark:text-gray-400 mb-6">
+                    <div class="flex items-center gap-2">
+                        <span class="text-gray-800 dark:text-green-400">📅</span>
+                        <span>[YYYY-MM-DD]</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-gray-800 dark:text-green-400">⏱️</span>
+                        <span>[X] min read</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-gray-800 dark:text-green-400">🏷️</span>
+                        <span>[tag1, tag2, tag3]</span>
+                    </div>
+                </div>
+
+                <div class="border border-gray-800 dark:border-green-400 p-4 text-sm mb-8">
+                    <div class="text-gray-800 dark:text-green-400 mb-2">
+                        <span>$ cat blog/[post-name].md | head -5</span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        [Brief introduction or summary of the blog post - 2-3 sentences explaining what the reader will learn]
+                    </p>
+                </div>
+            </header>
+
+            <!-- Blog Content -->
+            <div class="blog-content text-gray-700 dark:text-gray-300">
+                <!--
+                CONTENT TEMPLATE STRUCTURE:
+
+                ## Introduction
+                [Introduction paragraph explaining the context and motivation]
+
+                ## The Problem
+                [Describe the problem or challenge you faced]
+
+                ## My Approach
+                [Explain your solution or approach]
+
+                ### Code Example (if applicable)
+                ```language
+                // Your code here
+                ```
+
+                ## Results
+                [Describe the outcome or results]
+
+                ## Lessons Learned
+                [Key takeaways and insights]
+
+                ## What's Next
+                [Future improvements or related work]
+                -->
+
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-green-400">Introduction</h2>
+                <p>
+                    [Write your introduction here - explain the context, motivation, and what the reader will learn]
+                </p>
+
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-green-400">The Problem</h2>
+                <p>
+                    [Describe the problem or challenge you were trying to solve]
+                </p>
+
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-green-400">My Approach</h2>
+                <p>
+                    [Explain your solution methodology]
+                </p>
+
+                <h3 class="text-xl font-bold text-gray-800 dark:text-green-400">Implementation Details</h3>
+                <p>
+                    [Add technical details here]
+                </p>
+
+                <!-- Code Example Template -->
+                <pre><code class="language-python"># Example code block
+def example_function():
+    return "Replace with your actual code"
+</code></pre>
+
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-green-400">Results</h2>
+                <p>
+                    [Describe the outcome and any metrics or improvements]
+                </p>
+
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-green-400">Lessons Learned</h2>
+                <ul class="list-disc">
+                    <li>[Key takeaway 1]</li>
+                    <li>[Key takeaway 2]</li>
+                    <li>[Key takeaway 3]</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-green-400">What's Next</h2>
+                <p>
+                    [Future improvements, related work, or next steps]
+                </p>
+            </div>
+
+            <!-- Article Footer -->
+            <footer class="mt-16 pt-8 border-t border-gray-800 dark:border-green-400">
+                <div class="flex flex-wrap justify-between items-center gap-4">
+                    <div class="text-sm text-gray-600 dark:text-gray-400">
+                        <span>Published: [YYYY-MM-DD]</span>
+                        <span class="mx-2">•</span>
+                        <span>Last updated: [YYYY-MM-DD]</span>
+                    </div>
+
+                    <div class="flex gap-4 text-sm">
+                        <a href="../blog.html" class="text-gray-800 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">
+                            ← Back to Blog
+                        </a>
+                        <a href="../projects.html" class="text-gray-800 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">
+                            View Projects →
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        </article>
+
+        <!-- ASCII Art Divider -->
+        <div class="text-center text-gray-600 dark:text-gray-600 text-sm my-12">
+            <pre>
+    ╔══════════════════════════════════════════╗
+    ║  "Every line of code tells a story       ║
+    ║   Every bug teaches a lesson"            ║
+    ║                                          ║
+    ║  $ git commit -m "shared knowledge"      ║
+    ╚══════════════════════════════════════════╝
+            </pre>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 dark:border-green-400 mt-16 p-4">
+        <div class="max-w-4xl mx-auto text-center text-gray-500 text-sm">
+            <p>© 2024 Francesco Di Pietro | Built with HTML + Tailwind |
+                <a href="#" id="theme-toggle" class="hover:text-gray-800 dark:hover:text-green-400 transition-colors" aria-label="Toggle dark/light theme" role="button">Toggle Theme</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Theme toggle functionality
+        function initTheme() {
+            // Check for saved theme preference or default to 'dark'
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const htmlElement = document.documentElement;
+
+            if (savedTheme === 'dark') {
+                htmlElement.classList.add('dark');
+            } else {
+                htmlElement.classList.remove('dark');
+            }
+        }
+
+        // Initialize theme on page load
+        initTheme();
+
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            const htmlElement = document.documentElement;
+
+            // Toggle the dark class
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>

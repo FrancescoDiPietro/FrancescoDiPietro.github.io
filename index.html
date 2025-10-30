@@ -1,134 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>QR Code Generator</title>
-  <style>
-    /* Old-school vibe styling */
-    body {
-      background-color: #f0f0f0;
-      font-family: 'Courier New', Courier, monospace;
-      color: #333;
-      text-align: center;
-      margin-top: 50px;
-      padding-bottom: 60px; /* space for footer */
-    }
-    input, button, select {
-      font-size: 1em;
-      padding: 10px;
-      margin: 5px;
-    }
-    #qrcode {
-      margin-top: 20px;
-    }
-    /* Center the generated QR code image */
-    #qrcode img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    /* Footer styling */
-    footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #e0e0e0;
-      padding: 10px 0;
-      font-size: 0.8em;
-      color: #555;
-    }
-  </style>
-</head>
-<body>
-  <h1>QR Code Generator</h1>
-  <!-- Navigation button to Sudoku game -->
-  <div style="margin-bottom: 20px;">
-    <button onclick="window.location.href='sudoku.html'" style="background-color: #4CAF50; color: white; font-size: 1.1em; cursor: pointer;">🎮 Play Sudoku Together</button>
-  </div>
-  <input id="link" type="text" placeholder="Enter your link here" size="40"/>
-  <br/>
-  <button id="generate">Generate QR Code</button>
-  <br/>
-  <!-- Dropdown to choose a resolution for download -->
-  <select id="resolution">
-    <option value="">Select download resolution</option>
-    <option value="256">256 x 256</option>
-    <option value="512">512 x 512</option>
-    <option value="1024">1024 x 1024</option>
-  </select>
-  <button id="download">Download QR Code</button>
-  <div id="qrcode"></div>
-  
-  <!-- Include the local qrcode.min.js file -->
-  <script src="qrcode.js"></script> 
-  <script>
-    // Generate the displayed QR code (128x128)
-    document.getElementById('generate').addEventListener('click', function() {
-      var link = document.getElementById('link').value.trim();
-      document.getElementById('qrcode').innerHTML = "";
-      if(link) {
-        new QRCode(document.getElementById("qrcode"), {
-          text: link,
-          width: 128,
-          height: 128,
-          colorDark : "#000000",
-          colorLight : "#ffffff",
-          correctLevel : QRCode.CorrectLevel.H
-        });
-      } else {
-        alert("Please enter a valid link!");
-      }
-    });
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francesco Di Pietro | Computer Engineer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio of Francesco Di Pietro, Computer Engineer. Showcasing technical projects, blog posts, and engineering experiences.">
+    <meta name="keywords" content="computer engineer, portfolio, software development, technical blog">
+    
+    <!-- Google Fonts - JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 
-    // Download button: generate and download QR code in chosen resolution
-    document.getElementById('download').addEventListener('click', function() {
-      var link = document.getElementById('link').value.trim();
-      var res = document.getElementById('resolution').value;
-      if(!link) {
-        alert("Please enter a valid link!");
-        return;
-      }
-      if(!res) {
-        alert("Please select a download resolution from the dropdown!");
-        return;
-      }
-      // Create a temporary hidden container for generating the high-res QR code
-      var tempDiv = document.createElement("div");
-      tempDiv.style.visibility = "hidden";
-      document.body.appendChild(tempDiv);
-      // Generate the QR code at the chosen resolution
-      new QRCode(tempDiv, {
-        text: link,
-        width: parseInt(res),
-        height: parseInt(res),
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
-      });
-      // Give the library a moment to render the QR code
-      setTimeout(function() {
-        var img = tempDiv.getElementsByTagName("img")[0];
-        if(!img) {
-          alert("Failed to generate QR code image!");
-          document.body.removeChild(tempDiv);
-          return;
+    <!-- Tailwind CSS (Local) -->
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+
+    <!-- Initialize theme early to prevent flash -->
+    <script>
+        // Apply theme immediately to prevent flash
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
         }
-        // Create a temporary link to trigger the download
-        var a = document.createElement("a");
-        a.href = img.src;
-        a.download = "qrcode_" + res + "x" + res + ".png";
-        document.body.appendChild(a);
-        a.click();
-        // Cleanup
-        document.body.removeChild(a);
-        document.body.removeChild(tempDiv);
-      }, 100);
-    });
-  </script>
+    </script>
+</head>
+<body class="bg-white dark:bg-black text-black dark:text-green-400 min-h-screen">
+    <!-- Navigation -->
+    <nav class="p-4 border-b border-gray-800 dark:border-green-400">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-gray-800 dark:text-green-400">></span>
+                <span class="font-bold">francesco.dipietro@portfolio</span>
+                <span class="text-gray-600 dark:text-gray-500">~$</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-black dark:text-white border-b-2 border-gray-800 dark:border-green-400">home</a>
+                <a href="about.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+                <a href="blog.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">blog</a>
+                <a href="projects.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">projects</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden" aria-label="Toggle navigation menu">
+                <span class="text-gray-800 dark:text-green-400">☰</span>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="index.html" class="block text-black dark:text-white">home</a>
+            <a href="about.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+            <a href="blog.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">blog</a>
+            <a href="projects.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">projects</a>
+        </div>
+    </nav>
 
-  <!-- Footer with credits and donation address -->
-  <footer>
-    <p>Credits: Francesco Di Pietro</p>
-  </footer>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4">
+        <!-- Hero Section -->
+        <section class="my-12">
+            <div class="space-y-4">
+                <h1 class="text-4xl md:text-6xl font-bold">
+                    <span class="text-gray-800 dark:text-green-400">></span> Francesco Di Pietro
+                    <span class="terminal-cursor"></span>
+                </h1>
+                <p class="text-xl text-gray-700 dark:text-gray-300">Computer Engineer</p>
+                <p class="text-gray-600 dark:text-gray-400 max-w-2xl">
+                    Building systems, solving problems, and learning through code. 
+                    Welcome to my digital space where I document projects, share technical insights, 
+                    and explore the intersection of hardware and software.
+                </p>
+            </div>
+            
+            <!-- ASCII Art Divider -->
+            <div class="my-8 text-gray-500 dark:text-gray-600 text-sm">
+                <pre>
+    ┌─────────────────────────────────────┐
+    │  $ ./francesco --version            │
+    │  engineer v2024.08 (stable)         │
+    │  $ ./francesco --help               │
+    │  Available commands: about, blog,   │
+    │  projects, contact                  │
+    └─────────────────────────────────────┘
+                </pre>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="grid md:grid-cols-3 gap-6 my-12">
+            <a href="about.html" class="block p-6 border border-gray-800 dark:border-green-400 hover:bg-gray-100 dark:hover:bg-green-400 dark:hover:bg-opacity-10 transition-colors">
+                <h3 class="text-xl font-bold mb-2">$ whoami</h3>
+                <p class="text-gray-600 dark:text-gray-400">Learn about my background, experience, and what drives my engineering passion.</p>
+            </a>
+
+            <a href="blog.html" class="block p-6 border border-gray-800 dark:border-green-400 hover:bg-gray-100 dark:hover:bg-green-400 dark:hover:bg-opacity-10 transition-colors">
+                <h3 class="text-xl font-bold mb-2">$ cat blog/*</h3>
+                <p class="text-gray-600 dark:text-gray-400">Technical writings, project breakdowns, and lessons learned from building things.</p>
+            </a>
+
+            <a href="projects.html" class="block p-6 border border-gray-800 dark:border-green-400 hover:bg-gray-100 dark:hover:bg-green-400 dark:hover:bg-opacity-10 transition-colors">
+                <h3 class="text-xl font-bold mb-2">$ ls projects/</h3>
+                <p class="text-gray-600 dark:text-gray-400">Showcase of technical projects, from embedded systems to web applications.</p>
+            </a>
+       </section>
+
+   </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 dark:border-green-400 mt-16 p-4">
+        <div class="max-w-4xl mx-auto text-center text-gray-500 text-sm">
+            <p>© 2024 Francesco Di Pietro | Built with HTML + Tailwind | 
+                <a href="#" id="theme-toggle" class="hover:text-green-400 transition-colors" aria-label="Toggle dark/light theme" role="button">Toggle Theme</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Shared JavaScript -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

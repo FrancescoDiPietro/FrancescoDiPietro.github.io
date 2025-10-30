@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Francesco Di Pietro | Computer Engineer</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Technical blog by Francesco Di Pietro, Computer Engineer. Project breakdowns, learning experiences, and engineering insights.">
+    <meta name="keywords" content="computer engineer, technical blog, programming, projects, engineering">
+    
+    <!-- Google Fonts - JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (Local) -->
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+
+    <!-- Initialize theme early to prevent flash -->
+    <script>
+        // Apply theme immediately to prevent flash
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-black text-black dark:text-green-400 min-h-screen">
+    <!-- Navigation -->
+    <nav class="p-4 border-b border-gray-800 dark:border-green-400">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-gray-800 dark:text-green-400">></span>
+                <a href="index.html" class="font-bold hover:text-black dark:hover:text-white transition-colors">francesco.dipietro@portfolio</a>
+                <span class="text-gray-600 dark:text-gray-500">~$</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">home</a>
+                <a href="about.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+                <a href="blog.html" class="text-black dark:text-white border-b-2 border-gray-800 dark:border-green-400">blog</a>
+                <a href="projects.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">projects</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden" aria-label="Toggle navigation menu">
+                <span class="text-gray-800 dark:text-green-400">☰</span>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="index.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">home</a>
+            <a href="about.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+            <a href="blog.html" class="block text-black dark:text-white">blog</a>
+            <a href="projects.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">projects</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4">
+        <!-- Header -->
+        <section class="my-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                <span class="text-gray-800 dark:text-green-400">$ cat blog/*</span>
+                <span class="terminal-cursor"></span>
+            </h1>
+            <p class="text-xl text-gray-700 dark:text-gray-300">Technical writings and project breakdowns</p>
+            <p class="text-gray-600 dark:text-gray-400 mt-2">
+                Documenting my engineering journey, one post at a time.
+            </p>
+        </section>
+
+        <!-- Blog Stats -->
+        <section class="mb-12">
+            <div class="border border-gray-800 dark:border-green-400 p-4 text-sm">
+                <div class="flex flex-wrap gap-6">
+                    <div>
+                        <span class="text-gray-800 dark:text-green-400">$ wc -l blog/*</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600 dark:text-gray-400">Total posts:</span> <span class="text-black dark:text-white">0</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600 dark:text-gray-400">Status:</span> <span class="text-black dark:text-white">coming soon</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-600 dark:text-gray-400">Planned categories:</span> <span class="text-black dark:text-white">projects, tutorials, learning</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Soon Section -->
+        <section class="space-y-8">
+            <!-- Coming Soon Message -->
+            <article class="border border-gray-800 dark:border-green-400 p-8 text-center">
+                <header class="mb-6">
+                    <h2 class="text-3xl font-bold mb-4 text-gray-800 dark:text-green-400">
+                        $ echo "Coming Soon..."
+                        <span class="terminal-cursor"></span>
+                    </h2>
+                </header>
+
+                <div class="mb-6 text-gray-600 dark:text-gray-300">
+                    <p class="text-xl mb-4">
+                        The blog is currently under construction. I'm preparing content about my projects,
+                        technical learnings, and engineering insights.
+                    </p>
+                    <p class="text-lg">
+                        Check back soon for posts about network simulation, IoT systems, debugging stories,
+                        and more technical adventures!
+                    </p>
+                </div>
+
+                <div class="text-sm border border-gray-800 dark:border-green-400 p-4 mb-6 text-gray-600 dark:text-gray-400">
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <strong class="text-gray-800 dark:text-green-400">Planned Topics:</strong><br>
+                            • Project breakdowns<br>
+                            • Learning experiences<br>
+                            • Technical tutorials
+                        </div>
+                        <div>
+                            <strong class="text-gray-800 dark:text-green-400">Technologies:</strong><br>
+                            • Python, C++, Java<br>
+                            • IoT & Arduino<br>
+                            • Network protocols
+                        </div>
+                        <div>
+                            <strong class="text-gray-800 dark:text-green-400">Format:</strong><br>
+                            • Technical deep-dives<br>
+                            • Problem-solving stories<br>
+                            • Code examples
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="text-sm">
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">
+                        In the meantime, check out my projects to see what I've been working on.
+                    </p>
+                    <a href="projects.html"
+                       class="text-gray-800 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">
+                        $ cd ../projects →
+                    </a>
+                </footer>
+            </article>
+        </section>
+
+        <!-- ASCII Art Divider -->
+        <div class="text-center text-gray-600 dark:text-gray-600 text-sm my-12">
+            <pre>
+    ╔══════════════════════════════════════════╗
+    ║  "The best way to learn is to document   ║
+    ║   the journey, not just the destination" ║
+    ║                                          ║
+    ║  $ cd ../projects && explore             ║
+    ║  $ cd ../about && connect                ║
+    ╚══════════════════════════════════════════╝
+            </pre>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 dark:border-green-400 mt-16 p-4">
+        <div class="max-w-4xl mx-auto text-center text-gray-500 text-sm">
+            <p>© 2024 Francesco Di Pietro | Built with HTML + Tailwind | 
+                <a href="#" id="theme-toggle" class="hover:text-gray-800 dark:hover:text-green-400 transition-colors" aria-label="Toggle dark/light theme" role="button">Toggle Theme</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Shared JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

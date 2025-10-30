@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Command Not Found | Francesco Di Pietro</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="404 Error - Page not found. Command not recognized in this portfolio.">
+    <meta name="robots" content="noindex, follow">
+    
+    <!-- Google Fonts - JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (Local) -->
+    <link rel="stylesheet" href="assets/css/tailwind.css">
+
+    <!-- Initialize theme early to prevent flash -->
+    <script>
+        // Apply theme immediately to prevent flash
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-black text-black dark:text-green-400 min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="p-4 border-b border-gray-800 dark:border-green-400">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-gray-800 dark:text-green-400">></span>
+                <span class="font-bold">francesco.dipietro@portfolio</span>
+                <span class="text-gray-600 dark:text-gray-500">~$</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">home</a>
+                <a href="about.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+                <a href="blog.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">blog</a>
+                <a href="projects.html" class="text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">projects</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-btn" class="md:hidden" aria-label="Toggle navigation menu">
+                <span class="text-gray-800 dark:text-green-400">☰</span>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+            <a href="index.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">home</a>
+            <a href="about.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">about</a>
+            <a href="blog.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">blog</a>
+            <a href="projects.html" class="block text-gray-600 dark:text-green-400 hover:text-black dark:hover:text-white transition-colors">projects</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="max-w-3xl w-full">
+            <!-- Terminal Window -->
+            <div class="border border-gray-800 dark:border-green-400 rounded-lg overflow-hidden">
+                <!-- Terminal Header -->
+                <div class="bg-gray-200 dark:bg-gray-900 px-4 py-2 flex items-center space-x-2 border-b border-gray-800 dark:border-green-400">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-2 text-xs text-gray-600 dark:text-gray-400">terminal — bash — 80×24</span>
+                </div>
+                
+                <!-- Terminal Body -->
+                <div class="p-6 space-y-4">
+                    <!-- Command -->
+                    <div class="typing-animation">
+                        <span class="text-gray-800 dark:text-green-400">francesco@portfolio</span>
+                        <span class="text-gray-600 dark:text-gray-500">:</span>
+                        <span class="text-blue-600 dark:text-blue-400">~</span>
+                        <span class="text-gray-600 dark:text-gray-500">$</span>
+                        <span class="ml-2" id="typed-command"></span>
+                    </div>
+                    
+                    <!-- Error Output -->
+                    <div class="text-red-600 dark:text-red-400 space-y-2">
+                        <p>bash: <span id="command-echo"></span>: command not found</p>
+                    </div>
+                    
+                    <!-- ASCII Art Error -->
+                    <pre class="text-gray-600 dark:text-gray-400 text-xs">
+ _____ ___  _  _   
+|  _  |   || || |  
+| |_| | | || || |_ 
+|_____|___||_||___|
+                   
+ERROR 404: Page Not Found
+                    </pre>
+                    
+                    <!-- Suggestions -->
+                    <div class="text-gray-600 dark:text-gray-400 space-y-2">
+                        <p>Did you mean one of these commands?</p>
+                        <ul class="ml-4 space-y-1">
+                            <li>• <a href="index.html" class="text-gray-800 dark:text-green-400 hover:underline">cd ~</a> (go home)</li>
+                            <li>• <a href="about.html" class="text-gray-800 dark:text-green-400 hover:underline">whoami</a> (about me)</li>
+                            <li>• <a href="blog.html" class="text-gray-800 dark:text-green-400 hover:underline">ls blog/</a> (view blog posts)</li>
+                            <li>• <a href="projects.html" class="text-gray-800 dark:text-green-400 hover:underline">ls projects/</a> (view projects)</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Man Page Style Help -->
+                    <div class="mt-6 pt-4 border-t border-gray-300 dark:border-gray-700">
+                        <div class="text-gray-600 dark:text-gray-400 text-sm">
+                            <p class="font-bold mb-2">DESCRIPTION</p>
+                            <p class="ml-4 mb-3">The requested page could not be found on this server. This might be because:</p>
+                            <ul class="ml-8 space-y-1">
+                                <li>• The URL was typed incorrectly</li>
+                                <li>• The page has been moved or deleted</li>
+                                <li>• You followed a broken link</li>
+                            </ul>
+                            
+                            <p class="font-bold mt-4 mb-2">SEE ALSO</p>
+                            <p class="ml-4">
+                                <a href="index.html" class="text-gray-800 dark:text-green-400 hover:underline">home(1)</a>,
+                                <a href="about.html" class="text-gray-800 dark:text-green-400 hover:underline">about(1)</a>,
+                                <a href="blog.html" class="text-gray-800 dark:text-green-400 hover:underline">blog(1)</a>,
+                                <a href="projects.html" class="text-gray-800 dark:text-green-400 hover:underline">projects(1)</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Prompt -->
+                    <div class="flex items-center">
+                        <span class="text-gray-800 dark:text-green-400">francesco@portfolio</span>
+                        <span class="text-gray-600 dark:text-gray-500">:</span>
+                        <span class="text-blue-600 dark:text-blue-400">~</span>
+                        <span class="text-gray-600 dark:text-gray-500">$</span>
+                        <span class="ml-2 terminal-cursor"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fun Easter Egg -->
+            <div class="mt-8 text-center text-gray-600 dark:text-gray-400 text-xs">
+                <p>Tip: Try typing 'sudo find /' in your imagination. Still won't find this page though.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 dark:border-green-400 p-4">
+        <div class="max-w-4xl mx-auto text-center text-gray-600 dark:text-gray-500 text-sm">
+            <p>© 2024 Francesco Di Pietro | Built with HTML + Tailwind | 
+                <a href="#" id="theme-toggle" class="hover:text-gray-800 dark:hover:text-green-400 transition-colors" aria-label="Toggle dark/light theme" role="button">Toggle Theme</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Shared JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
