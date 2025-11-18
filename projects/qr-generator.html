@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - Francesco's Projects</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/projects.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="project-content">
+            <input id="link" type="text" placeholder="Enter your link here" size="40"/>
+            <br/>
+            <button id="generate">Generate QR Code</button>
+            <br/>
+            <select id="resolution">
+                <option value="">Select download resolution</option>
+                <option value="256">256 x 256</option>
+                <option value="512">512 x 512</option>
+                <option value="1024">1024 x 1024</option>
+            </select>
+            <button id="download">Download QR Code</button>
+            <div id="qrcode"></div>
+            
+            <a href="../index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+
+    <script src="../qrcode.js"></script>
+    <script>
+        document.getElementById('generate').addEventListener('click', function() {
+            var link = document.getElementById('link').value.trim();
+            document.getElementById('qrcode').innerHTML = "";
+            if(link) {
+                new QRCode(document.getElementById("qrcode"), {
+                    text: link,
+                    width: 128,
+                    height: 128,
+                    colorDark : "#000000",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+            } else {
+                alert("Please enter a valid link!");
+            }
+        });
+
+        document.getElementById('download').addEventListener('click', function() {
+            var link = document.getElementById('link').value.trim();
+            var res = document.getElementById('resolution').value;
+            if(!link) {
+                alert("Please enter a valid link!");
+                return;
+            }
+            if(!res) {
+                alert("Please select a download resolution from the dropdown!");
+                return;
+            }
+            var tempDiv = document.createElement("div");
+            tempDiv.style.visibility = "hidden";
+            document.body.appendChild(tempDiv);
+            new QRCode(tempDiv, {
+                text: link,
+                width: parseInt(res),
+                height: parseInt(res),
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            setTimeout(function() {
+                var img = tempDiv.getElementsByTagName("img")[0];
+                if(!img) {
+                    alert("Failed to generate QR code image!");
+                    document.body.removeChild(tempDiv);
+                    return;
+                }
+                var a = document.createElement("a");
+                a.href = img.src;
+                a.download = "qrcode_" + res + "x" + res + ".png";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                document.body.removeChild(tempDiv);
+            }, 100);
+        });
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+</html> 

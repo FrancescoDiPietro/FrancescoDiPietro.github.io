@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Getting Started with Web Development",
+        "date": "March 15, 2024",
+        "description": "Web development is an exciting journey that combines creativity with technical skills. In this post, we'll explore the fundamentals...",
+        "file": "web-development.md"
+    },
+    {
+        "title": "The Art of Clean Code",
+        "date": "March 10, 2024",
+        "description": "Writing clean, maintainable code is both an art and a science. Let's dive into some best practices...",
+        "file": "clean-code.md"
+    },
+    {
+        "title": "My Journey in Tech",
+        "date": "March 5, 2024",
+        "description": "From my first line of code to building complex applications, here's my story...",
+        "file": "tech-journey.md"
+    }
+]

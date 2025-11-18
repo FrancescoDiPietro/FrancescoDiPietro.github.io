@@ -1,0 +1,92 @@
+.project-content {
+    background-color: var(--black);
+    padding: 40px;
+    border: 1px solid var(--dark-green);
+    border-radius: 10px;
+    box-shadow: 0 0 5px var(--dark-green);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    transition: var(--transition);
+}
+
+.project-content:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.project-content input,
+.project-content select {
+    font-family: 'VT323', monospace;
+    font-size: 1em;
+    padding: 12px 15px;
+    margin: 8px;
+    border: 2px solid var(--dark-green);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    transition: var(--transition);
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.project-content input:focus,
+.project-content select:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(0, 255, 0, 0.2);
+}
+
+.project-content input::placeholder {
+    color: var(--green);
+}
+
+.project-content button {
+    margin: 15px 8px;
+    min-width: 120px;
+}
+
+.project-content button:first-of-type {
+    background-color: var(--dark-green);
+}
+
+.project-content button:last-of-type {
+    background-color: var(--light-green);
+    color: var(--black);
+}
+
+#qrcode {
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#qrcode img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-link {
+    display: inline-block;
+    background-color: var(--dark-green);
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    transition: var(--transition);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background-color: var(--light-green);
+    color: var(--black);
+} 
